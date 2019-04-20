@@ -1,12 +1,54 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator  } from 'react-navigation';
 
-export default class App extends React.Component {
+import AuthScreen from './screens/AuthScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
+import MapScreen from './screens/MapScreen';
+import DeckScreen from './screens/DeckScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import ReviewScreen from './screens/ReviewScreen';
+
+
+
+
+class App extends React.Component {
+  
+  renderNavigations()
+  {
+
+    return {
+      screen: createAppContainer(createBottomTabNavigator({
+        map : MapScreen,
+        deck: DeckScreen,
+        review : this.renderStackNavigation()
+      }))
+    };
+
+  }
+
+  renderStackNavigation()
+  {
+    return {
+      screen : createAppContainer(createStackNavigator({
+        review : ReviewScreen,
+        settings : SettingsScreen
+      }))
+    };
+  }
+
   render() {
+
+    const MainNavigator = createBottomTabNavigator({
+      welcome:  WelcomeScreen ,
+      auth: AuthScreen, 
+      main: this.renderNavigations()
+    });
+
+    const Navigation = createAppContainer(MainNavigator);
+
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+        <Navigation />
     );
   }
 }
@@ -19,3 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
+
+
