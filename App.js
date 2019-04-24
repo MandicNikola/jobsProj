@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator  } from 'react-navigation';
 
+import { Provider } from 'react-redux';
+
+import store from './store';
 import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import MapScreen from './screens/MapScreen';
@@ -40,15 +43,31 @@ class App extends React.Component {
   render() {
 
     const MainNavigator = createBottomTabNavigator({
-      welcome:  WelcomeScreen ,
-      auth: AuthScreen, 
+      welcome:  {
+        screen : WelcomeScreen,
+        navigationOptions : {
+          tabBarVisible : false
+        }
+      } ,
+      auth: {
+        screen: AuthScreen,
+        navigationOptions : {
+          tabBarVisible : false
+        }
+      }, 
       main: this.renderNavigations()
+    }, {
+      navigationOptions : {
+        tabBar : { visible : false }
+      }
     });
 
     const Navigation = createAppContainer(MainNavigator);
 
     return (
+      <Provider store={ store }>
         <Navigation />
+      </Provider>
     );
   }
 }
