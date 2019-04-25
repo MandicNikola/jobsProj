@@ -25,7 +25,10 @@ class App extends React.Component {
         map : MapScreen,
         deck: DeckScreen,
         review : this.renderStackNavigation()
-      }))
+      })),
+      navigationOptions : {
+        tabBarVisible : false
+      }
     };
 
   }
