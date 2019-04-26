@@ -26,7 +26,7 @@ const buildJobsUrl = (zip) => {
 };
 
 
-export const fetchJobs = (region) => async dispatch => {
+export const fetchJobs = (region, callback) => async dispatch => {
 
     try
     {
@@ -34,10 +34,12 @@ export const fetchJobs = (region) => async dispatch => {
         const url = buildJobsUrl(zip);
         let { data } = await axios.get(url);
         dispatch({ type: FETCH_JOBS, payload: data });
+        callback();
     }
     catch(e)
     {
         console.log(e);
+        callback();
     }
 };
 
