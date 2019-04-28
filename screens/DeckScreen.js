@@ -45,10 +45,17 @@ class DeckScreen extends Component {
         );
     }
 
-    renderNoMoreCards()
+    renderNoMoreCards = () =>
     {
         return (
             <Card title="No more jobs">
+                <Button  
+                        large
+                        title='Back To Map'
+                        backgroundColor = '#03A9F4'
+                        icon={{ name: 'my-location' }}
+                        onPress = { () =>  this.props.navigation.navigate('map')}
+                />
             </Card>
         );
     }

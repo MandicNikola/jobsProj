@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import { Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { clearLikedJobs } from '../actions';
+
+
 
 class SettingsScreen extends Component {
 
@@ -7,19 +12,15 @@ class SettingsScreen extends Component {
     {
         return (
             <View>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
-                <Text>SettingsScreen</Text>
+              <Button 
+                title = 'Reset liked jobs'
+                icon={ { name: 'delete-forever' } }
+                onPress = { this.props.clearLikedJobs }
+              />
             </View>
         );
     }
 
 }
 
-export default SettingsScreen;
+export default connect(null, actions)(SettingsScreen);
