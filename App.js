@@ -69,9 +69,10 @@ class App extends React.Component {
 
     const Navigation = createAppContainer(MainNavigator);
 
+
     return (
-      <Provider store={ store }>
-        <Navigation />
+      <Provider store={ store }>  
+          <Navigation />
       </Provider>
     );
   }
