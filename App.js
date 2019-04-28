@@ -1,9 +1,11 @@
+import Expo, { Notifications } from 'expo';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator  } from 'react-navigation';
 
 import { Provider } from 'react-redux';
 
+import registerFormNotifications from './services/push_notifications';
 import store from './store';
 import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
@@ -18,6 +20,23 @@ import { reviewNavigationOptions } from './navigation';
 
 class App extends React.Component {
   
+  componentDidMount()
+  {
+    registerFormNotifications();
+    Notifications.addListener((notification) => { 
+      const { data: { text }, origin } = notification;
+      if(origin === 'received' && text)
+      {
+        Alert.alert(
+          'New Push notification',
+          text,
+          [{ text: 'Ok.' }]
+        );
+      }
+    });
+  }
+
+
   renderNavigations()
   {
 
