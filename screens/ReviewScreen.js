@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Linking, Platform } from 'react-native';
-import { Card, Button } from 'react-native-elements';
+import { Card, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
 
@@ -8,18 +8,16 @@ import { MapView } from 'expo';
 class ReviewScreen extends Component {
 
     static navigationOptions = ({ navigation }) => {
-       
-       return {
+        return{
             title: 'Review Jobs',
-            headerRight : (
-                    <Button 
+            headerRight :   ( 
+                        <Button 
                         title='Settings'  
                         onPress={ () => navigation.navigate('settings') } 
                         buttonStyle = { style.buttonStyle }
                         titleStyle = { style.titleStyle }
-                    />
-                )
-       };
+                    />)
+            };
     }
 
     renderLikedJobs()

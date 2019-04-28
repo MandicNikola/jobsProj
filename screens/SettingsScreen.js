@@ -8,6 +8,10 @@ import { clearLikedJobs } from '../actions';
 
 class SettingsScreen extends Component {
 
+    static navigationOptions = {
+      title : 'Settings'
+    }
+
     render()
     {
         return (
@@ -16,6 +20,7 @@ class SettingsScreen extends Component {
                 title = 'Reset liked jobs'
                 icon={ { name: 'delete-forever' } }
                 onPress = { this.props.clearLikedJobs }
+                buttonStyle = {{ marginTop : 20, marginLeft : 20, marginRight : 20 }}
               />
             </View>
         );
@@ -23,4 +28,4 @@ class SettingsScreen extends Component {
 
 }
 
-export default connect(null, actions)(SettingsScreen);
+export default connect(null, { clearLikedJobs })(SettingsScreen);

@@ -12,6 +12,7 @@ import DeckScreen from './screens/DeckScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import ReviewScreen from './screens/ReviewScreen';
 
+import { reviewNavigationOptions } from './navigation';
 
 
 
@@ -39,7 +40,8 @@ class App extends React.Component {
       screen : createAppContainer(createStackNavigator({
         review : ReviewScreen,
         settings : SettingsScreen
-      }))
+      })),
+      navigationOptions : reviewNavigationOptions
     };
   }
 
